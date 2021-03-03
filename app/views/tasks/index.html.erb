@@ -1,0 +1,11 @@
+<h1> Task Index</h1>
+
+<% @tasks.each do |task| %>
+  <p><%= task.id %> - 
+  <%= task.title %> - 
+  <%= task.description %> -
+  <%= link_to('View Task Details', task_path(task.id)) %> - 
+  <%= link_to('Delete', task_path(task.id), method: 'delete', data: {confirm: "Are you SURE?"}) %> <p>
+<% end %>
+
+<%= link_to('New Task', new_task_path) %>
