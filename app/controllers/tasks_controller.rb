@@ -2,7 +2,10 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @tasks = Task.all
+    # option 1
+    # @tasks = Task.where(user_id: current_user.id)
+    # option 2
+    @tasks = current_user.tasks
   end
 
   def show
@@ -15,6 +18,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     if @task.save
       redirect_to tasks_path, notice: "Task saved!"
     else
