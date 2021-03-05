@@ -130,5 +130,5 @@ Rails.application.configure do
     authentication:       'plain',
     enable_starttls_auto: true }
 
-  config.action_mailer.default_url_options = { 'https://sheltered-ridge-48994.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'https://sheltered-ridge-48994.herokuapp.com/' }
 end
