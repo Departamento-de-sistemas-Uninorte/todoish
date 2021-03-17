@@ -4,4 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
   has_many :tasks
+
+  def self.authenticate(email, pass)
+    where("email = ? AND password = ?", email, pass)
+  end
 end

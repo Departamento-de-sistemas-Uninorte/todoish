@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_task, only: [:show, :destroy]
   
   def index
     # option 1
@@ -9,7 +10,6 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def new
@@ -32,12 +32,15 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
     @task.destroy
     redirect_to tasks_path, notice: "Task destroyed!"
   end
 
   private 
+
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
   def task_params
     params.require(:task).permit(:title, :description)
