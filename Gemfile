@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'simple_token_authentication', '~> 1.17.0'
+
 group :production do 
   #DB for production is Postgres
   gem 'pg', '1.2.3'
