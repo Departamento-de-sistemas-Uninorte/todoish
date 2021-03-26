@@ -7,9 +7,9 @@ module Api
 
       def check_basic_auth
         #params[:email] params[:password]
-        authenticate_with_http_basic do |email, user_token|
-          user = User.authenticate(email, user_token)
-          unless user.empty?
+        authenticate_with_http_token do |user_token|
+          user = User.authenticate(user_token)
+          if user
             @current_user = user
           else
             head :unauthorized
