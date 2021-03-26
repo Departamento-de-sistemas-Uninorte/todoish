@@ -6,7 +6,7 @@ module Api
 
       #GET api/v1/tasks
       def index
-        @tasks = Task.all
+        @tasks = current_user.tasks
         render json: @tasks
       end
       
@@ -14,11 +14,7 @@ module Api
       def show
         # @task = Task.find(params[:id]) 
         # ^ defined in before_action :set_task
-        if @task
-          render json: @task
-        else
-          render error: { error: 'Task not found', status: 400 }
-        end
+        render json: @task
       end
       
       # POST /api/v1/tasks
