@@ -1,10 +1,8 @@
 module Types
   class MutationType < Types::BaseObject
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World"
+
+    field :create_task, mutation: Mutations::CreateTask do
+      "This allows to create a Task via GraphQL"
     end
   end
 end
