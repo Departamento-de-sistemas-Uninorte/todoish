@@ -40,7 +40,8 @@ module Api
       # DELETE /api/v1/tasks/:id
       def destroy
         # @task = Task.find(params[:id]) 
-        @task.destroy
+        # @task.destroy # real time
+        DeleteTweetJob.set(wait: 1.minutes).perform_later(@task) # perform after 2 min
         # render message: { error: 'Unable to save this task', status: 400 }
         head :no_content
       end

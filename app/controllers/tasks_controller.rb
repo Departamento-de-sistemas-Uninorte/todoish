@@ -32,7 +32,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
+    # @task.destroy
+    DeleteTweetJob.set(wait: 1.minutes).perform_later(@task) # perform after 2 min
     redirect_to tasks_path, notice: "Task destroyed!"
   end
 
