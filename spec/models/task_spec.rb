@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Task, type: :model do
   describe "Validations" do
-    # what the app should do
+    it { should validate_presence_of(:title) }
   end
 end
 
