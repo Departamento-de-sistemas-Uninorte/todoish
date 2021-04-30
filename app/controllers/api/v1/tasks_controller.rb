@@ -2,7 +2,7 @@ module Api
   module V1
     class TasksController < ApiController
 
-      before_action :set_task, only: [:show, :destroy]
+      before_action :set_task, only: [:show, :destroy, :image]
 
       #GET api/v1/tasks
       def index
@@ -44,7 +44,14 @@ module Api
         # render message: { error: 'Unable to save this task', status: 400 }
         head :no_content
       end
-    
+
+      def image
+        if @task.image.attached? 
+          render json: @task.image
+        else
+          render error: { error: 'Unable to display image for this task', status: 400 }
+        end
+      end 
       private
 
       def set_task
@@ -52,7 +59,7 @@ module Api
       end
 
       def task_params
-        params.require(:task).permit(:title, :description)
+        params.require(:task).permit(:title, :description, :image)
       end
     end
   end
