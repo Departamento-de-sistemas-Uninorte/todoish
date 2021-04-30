@@ -2,7 +2,7 @@ module Api
   module V1
     class ApiController < ActionController::Base
       skip_before_action :verify_authenticity_token
-      before_action :check_basic_auth
+      # before_action :check_basic_auth
       rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
       def check_basic_auth
